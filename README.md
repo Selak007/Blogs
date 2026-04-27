@@ -3,7 +3,7 @@
 An engaging and educational platform for blogs about animals.
 
 ## Ideal User Experience
-BlogWrites should be an engaging and educational platform centered around animal blogs. Users should easily navigate through blog posts and gain insightful information about animals, with initial focus on Cats, Dogs, and Lions.
+The user should find comprehensive and engaging content for each animal blog post. Each post should offer at least 200 words to provide insightful and detailed information, enhancing educational value.
 
 ## Project Structure
 ```
@@ -22,6 +22,7 @@ spec.md
 ```
 
 ## Changelog
+- 2026-04-28: Expanded content for cat, dog, and lion markdown files to enhance educational value.
 - 2026-04-27: Initial creation of the README and project setup with basic structure for BlogWrites.
 
 ## Status
