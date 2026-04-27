@@ -3,7 +3,8 @@
 An engaging and educational platform for blogs about animals.
 
 ## Ideal User Experience
-BlogWrites should be an engaging and educational platform centered around animal blogs. Users should easily navigate through blog posts and gain insightful information about animals, with initial focus on Cats, Dogs, and Lions.
+- The UI should be visually appealing and elegant.
+- Yellow should be the predominant color throughout the UI to align with the project's theme.
 
 ## Project Structure
 ```
@@ -22,6 +23,8 @@ spec.md
 ```
 
 ## Changelog
+- 2026-04-28: Updated styles to enhance elegance and make yellow the predominant color in the UI.
+
 - 2026-04-27: Initial creation of the README and project setup with basic structure for BlogWrites.
 
 ## Status
