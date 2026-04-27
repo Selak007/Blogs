@@ -22,10 +22,7 @@ frontend/
 spec.md
 ```
 
-## Changelog
-- 2026-04-28: Updated styles to enhance elegance and make yellow the predominant color in the UI.
 
-- 2026-04-27: Initial creation of the README and project setup with basic structure for BlogWrites.
 
 ## Status
 Development ongoing, with foundational structures in place and initial content created for Cat, Dog, and Lion blogs.
