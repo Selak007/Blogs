@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlogWrites - Home</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body { background-color: yellow; color: #1a1a1a; }
+        a { color: #1a1a1a; text-decoration: none; }
+        .animal-card { border: 2px solid #1a1a1a; padding: 10px; text-align: center; margin-bottom: 10px; }
+    </style>
 </head>
 <body>
     <header>
@@ -20,16 +25,19 @@
     <main>
         <section>
             <h2>Featured Animals</h2>
-            <article>
-                <h3>Cat</h3>
+            <article class="animal-card">
+                <h3><a href="cat.html">Cat</a></h3>
+                <img src="images/cat.jpg" alt="Cat" width="200">
                 <p>Cats are small, carnivorous mammals.</p>
             </article>
-            <article>
-                <h3>Dog</h3>
+            <article class="animal-card">
+                <h3><a href="dog.html">Dog</a></h3>
+                <img src="images/dog.jpg" alt="Dog" width="200">
                 <p>Dogs are domesticated mammals loved for their loyalty.</p>
             </article>
-            <article>
-                <h3>Lion</h3>
+            <article class="animal-card">
+                <h3><a href="lion.html">Lion</a></h3>
+                <img src="images/lion.jpg" alt="Lion" width="200">
                 <p>Lions are large carnivorous mammals found in Africa and Asia.</p>
             </article>
         </section>
