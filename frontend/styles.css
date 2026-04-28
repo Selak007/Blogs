@@ -19,13 +19,16 @@ nav ul li {
     display: inline;
     margin-right: 10px;
 }
-nav ul li a {
+nav ul li a { color: #fff;
+ color: #fff;
+
     color: #FFD700;
     text-decoration: none;
     transition: color 0.3s;
 }
 
-nav ul li a:hover {
+nav ul li a:hover { color: #FFC107; text-decoration: underline; } 
+ {
     color: #FFC107;
 }
 
@@ -47,7 +50,7 @@ main {
     padding: 1rem;
 }
 footer {
-    background: #FFD700;
+    background: #FFD700; font-size: 0.9rem;
     color: #333;
     text-align: center;
     padding: 1rem;

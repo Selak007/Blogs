@@ -3,9 +3,23 @@
 An engaging and educational platform for blogs about animals.
 
 ## Ideal User Experience
-- Users should visit the website and find animal-specific blog posts easily accessible as HTML pages.
-- Each animal will have a clickable card that redirects to its respective blog page, enhancing navigation and user engagement.
-- The design should align with the existing theme, using yellow as a dominant color.
+
+The implementation involved creating a new blog page dedicated to Tigers in the existing BlogWrites platform. This addition was seamlessly incorporated into the existing infrastructure, ensuring that it aligns with the visual and thematic elements of the current site.
+
+### 1. Creation of Tiger Blog Page
+- **File:** `frontend/tiger.html`
+- **Content:** The page includes educational sections on Tigers: Introduction, Habitat, Behavior, and Conservation. Styled to match the site's yellow theme.
+
+### 2. Navigation Update
+- **File:** `frontend/index.html`
+- **Modification:** A new link and card were added to navigate to the Tiger page.
+
+### 3. Styling Consistency
+- **File:** `frontend/styles.css`
+- **Adjustment:** Verified color and style consistency to ensure the new blog page is cohesively integrated.
+
+### 4. Verification of Links
+- Ensured that all navigational links were functional and that the Tiger page was accessible from the homepage.
 
 ## Project Structure
 ```
@@ -23,11 +37,12 @@ frontend/
     lion.html
     index.html
     styles.css
-spec.md
-```
+    tiger.html
+``` 
 
 ## Changelog
-- 2026-04-28: Converted content files to HTML and added animal cards for better navigation and theme alignment. 
+- 2026-04-28: Added Tiger blog, updated navigation, and styling for seamless integration into existing platform. 
+- [Previous entry]
 
 ## Status
 Development ongoing, with foundational structures in place and initial content created for Cat, Dog, and Lion blogs.
@@ -35,3 +50,4 @@ Development ongoing, with foundational structures in place and initial content c
 ---
 
 This document serves as a dynamic README for the BlogWrites project and will be updated as the project evolves.
+
