@@ -4,24 +4,30 @@ An engaging and educational platform for blogs about animals.
 
 ## Ideal User Experience
 
-The implementation involved creating a new blog page dedicated to Tigers in the existing BlogWrites platform. This addition was seamlessly incorporated into the existing infrastructure, ensuring that it aligns with the visual and thematic elements of the current site.
+To align with the existing structure and theme, a new Goat blog page will be added. This page will contain engaging, educational content formatted similarly to the current animal pages, ensuring consistency across the site.
 
-### 1. Creation of Tiger Blog Page
-- **File:** `frontend/tiger.html`
-- **Content:** The page includes educational sections on Tigers: Introduction, Habitat, Behavior, and Conservation. Styled to match the site's yellow theme.
+### 1. Creation of Goat Blog Page
+- **File:** `frontend/goat.html`
+- **Content Sections:**
+  - Introduction to Goats
+  - Habitat of Goats
+  - Behavior of Goats
+  - Conservation efforts for Goats
+- **Styling:** Apply existing styles from `styles.css` for visual consistency.
 
 ### 2. Navigation Update
 - **File:** `frontend/index.html`
-- **Modification:** A new link and card were added to navigate to the Tiger page.
+- **Modification:** Add a new link and card for navigation to the Goat page. Ensure it is visually consistent with existing animal cards.
 
-### 3. Styling Consistency
+### 3. Styling Verification
 - **File:** `frontend/styles.css`
-- **Adjustment:** Verified color and style consistency to ensure the new blog page is cohesively integrated.
+- **Check:** Confirm all stylistic elements align with the current theme to ensure the new page integrates seamlessly.
 
-### 4. Verification of Links
-- Ensured that all navigational links were functional and that the Tiger page was accessible from the homepage.
+### 4. Link Verification
+- **Task:** Ensure that all new links, particularly the link to the Goat page, are functional and accessible from the homepage.
 
 ## Project Structure
+
 ```
 backend/
     app.py
@@ -34,15 +40,16 @@ content/
 frontend/
     cat.html
     dog.html
-    lion.html
+    goat.html
     index.html
     styles.css
+    lion.html
     tiger.html
-``` 
+```
 
 ## Changelog
-- 2026-04-28: Added Tiger blog, updated navigation, and styling for seamless integration into existing platform. 
-- [Previous entry]
+
+- 2026-04-28: Added Goat blog, updated navigation and styling using frontend/goat.html, frontend/index.html, and frontend/styles.css. Met UX targets.
 
 ## Status
 Development ongoing, with foundational structures in place and initial content created for Cat, Dog, and Lion blogs.

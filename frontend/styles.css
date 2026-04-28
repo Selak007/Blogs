@@ -27,7 +27,7 @@ nav ul li a { color: #fff;
     transition: color 0.3s;
 }
 
-nav ul li a:hover { color: #FFC107; text-decoration: underline; } 
+nav ul li a:hover { color: #333; text-decoration: underline; } 
  {
     color: #FFC107;
 }
@@ -54,7 +54,7 @@ footer {
     color: #333;
     text-align: center;
     padding: 1rem;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
