@@ -4,27 +4,24 @@ An engaging and educational platform for blogs about animals.
 
 ## Ideal User Experience
 
-To align with the existing structure and theme, a new Goat blog page will be added. This page will contain engaging, educational content formatted similarly to the current animal pages, ensuring consistency across the site.
+To maintain the consistency of the current website, the new content about sloths will be integrated as a dedicated HTML page within the existing site structure, ensuring consistent style and navigation.
 
-### 1. Creation of Goat Blog Page
-- **File:** `frontend/goat.html`
+### 1. Creation of Sloth Blog Page
+- **File:** `frontend/sloth.html`
 - **Content Sections:**
-  - Introduction to Goats
-  - Habitat of Goats
-  - Behavior of Goats
-  - Conservation efforts for Goats
-- **Styling:** Apply existing styles from `styles.css` for visual consistency.
+  - Introduction to Sloths 
+  - Habitat of Sloths
+  - Behavior of Sloths
+  - Conservation efforts for Sloths
+- **Styling:** Utilize the existing styles defined in `frontend/styles.css` to ensure the new page is visually harmonious with the current site design.
 
-### 2. Navigation Update
+### 2. Update Navigation on Index Page
 - **File:** `frontend/index.html`
-- **Modification:** Add a new link and card for navigation to the Goat page. Ensure it is visually consistent with existing animal cards.
+- **Modification:** Add a new link for the sloth page. Ensure it is consistent with the existing animal links and styled appropriately.
 
-### 3. Styling Verification
+### 3. Verify Styles and Links
 - **File:** `frontend/styles.css`
-- **Check:** Confirm all stylistic elements align with the current theme to ensure the new page integrates seamlessly.
-
-### 4. Link Verification
-- **Task:** Ensure that all new links, particularly the link to the Goat page, are functional and accessible from the homepage.
+- **Task:** Confirm that all styles and links, particularly those newly added, are functional and adhere to site-wide consistency.
 
 ## Project Structure
 
@@ -42,13 +39,15 @@ frontend/
     dog.html
     goat.html
     index.html
-    styles.css
     lion.html
+    sloth.html
+    styles.css
     tiger.html
 ```
 
 ## Changelog
 
+- 2026-04-28: Added Sloth blog and updated navigation and styles to include the new sloth page using frontend/sloth.html, frontend/index.html, and frontend/styles.css. Met UX targets.
 - 2026-04-28: Added Goat blog, updated navigation and styling using frontend/goat.html, frontend/index.html, and frontend/styles.css. Met UX targets.
 
 ## Status
@@ -57,4 +56,3 @@ Development ongoing, with foundational structures in place and initial content c
 ---
 
 This document serves as a dynamic README for the BlogWrites project and will be updated as the project evolves.
-
