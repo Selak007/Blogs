@@ -49,7 +49,7 @@ frontend/
 
 ## Changelog
 
-- 2026-04-28: Added Goat blog, updated navigation and styling using frontend/goat.html, frontend/index.html, and frontend/styles.css. Met UX targets.
+- 2026-04-28: Updated UI and styling in frontend styles.css, cat.html, dog.html, lion.html, tiger.html for consistency and modern standards. 
 
 ## Status
 Development ongoing, with foundational structures in place and initial content created for Cat, Dog, and Lion blogs.
@@ -57,4 +57,3 @@ Development ongoing, with foundational structures in place and initial content c
 ---
 
 This document serves as a dynamic README for the BlogWrites project and will be updated as the project evolves.
-
