@@ -74,3 +74,34 @@ footer {
     width: 100%;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
 }
+
+body {
+    background-color: yellow;
+    color: #1a1a1a;
+}
+a {
+    color: #1a1a1a;
+    text-decoration: none;
+}
+.animal-card {
+    border: 2px solid #1a1a1a;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    .animal-card {
+        margin-bottom: 20px;
+    }
+    nav {
+        text-align: center;
+    }
+    nav ul li {
+        display: block;
+        margin-bottom: 10px;
+    }
+}
