@@ -62,5 +62,48 @@
     <footer>
         <p>&copy; 2026 BlogWrites</p>
     </footer>
+
+    <!-- Skeleton Loader Script (Issue #46) -->
+    <script>
+    (function () {
+        // Count how many real animal cards exist
+        var sections = document.querySelectorAll('main section, section');
+        sections.forEach(function (section) {
+            var cards = section.querySelectorAll('.animal-card');
+            if (cards.length === 0) return;
+
+            // Mark section as loading
+            section.classList.add('cards-loading');
+            section.setAttribute('data-skeleton-active', 'true');
+
+            // Build skeleton cards matching real card count
+            var skeletonContainer = document.createElement('div');
+            skeletonContainer.id = 'skeleton-container-' + Math.random().toString(36).slice(2);
+            skeletonContainer.setAttribute('data-skeleton-container', 'true');
+
+            for (var i = 0; i < cards.length; i++) {
+                var sk = document.createElement('div');
+                sk.className = 'skeleton';
+                sk.setAttribute('aria-hidden', 'true');
+                sk.innerHTML =
+                    '<div class="skeleton-img"></div>' +
+                    '<div class="skeleton-title"></div>' +
+                    '<div class="skeleton-text"></div>';
+                skeletonContainer.appendChild(sk);
+            }
+
+            section.insertBefore(skeletonContainer, cards[0]);
+
+            // Simulate network delay then reveal real cards
+            setTimeout(function () {
+                section.classList.remove('cards-loading');
+                section.removeAttribute('data-skeleton-active');
+                if (skeletonContainer.parentNode) {
+                    skeletonContainer.parentNode.removeChild(skeletonContainer);
+                }
+            }, 1200);
+        });
+    })();
+    </script>
 </body>
 </html>
