@@ -20,15 +20,26 @@ nav ul li {
     margin-right: 10px;
 }
 nav ul li a {
-    color: #1a1a1a;
+    display: inline-block;
+    background-color: #FFC107;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 25px;
     text-decoration: none;
-    transition: color 0.3s;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
 nav ul li a:hover {
-    color: #fff;
-    text-decoration: underline;
+    background-color: #FFD700;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
+
+nav ul li a:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 button {
@@ -48,6 +59,29 @@ button:hover {
 main {
     padding: 1rem;
 }
+
+.animal-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.animal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.animal-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
 @media (max-width: 768px) {
     body {
         padding: 1rem;
