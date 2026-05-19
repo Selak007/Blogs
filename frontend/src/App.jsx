@@ -42,11 +42,35 @@ const animals = [
 
 // Pages
 const Home = () => {
+  const [searchQuery, setSearchQuery] = React.useState('');
+
+  const filteredAnimals = animals.filter(animal =>
+    animal.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="page-content" style={{ padding: 0, background: 'transparent', boxShadow: 'none' }}>
       <h2>Featured Animals</h2>
+      
+      <div className="search-container" style={{ marginBottom: '1.5rem' }}>
+        <input
+          type="text"
+          placeholder="Search for an animal..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={{ 
+            width: '100%', 
+            padding: '0.75rem', 
+            fontSize: '1rem', 
+            borderRadius: '8px', 
+            border: '1px solid #ccc',
+            boxSizing: 'border-box'
+          }}
+        />
+      </div>
+
       <div className="animal-grid">
-        {animals.map((animal) => (
+        {filteredAnimals.map((animal) => (
           <Link to={`/animal/${animal.id}`} key={animal.id} className="animal-card">
             <img src={animal.image} alt={animal.name} onError={(e) => { e.target.src = 'https://via.placeholder.com/400x300?text=' + animal.name; }} />
             <div className="animal-card-content">
