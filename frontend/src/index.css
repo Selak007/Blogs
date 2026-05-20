@@ -186,6 +186,114 @@ footer {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.login-card {
+  background: linear-gradient(145deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
+  border-radius: 18px;
+  padding: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+  max-width: 520px;
+  margin: 0 auto;
+  width: 100%;
+  animation: fadeIn 0.6s ease;
+}
+
+.login-card h2 {
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--accent);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.form-field input {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.8);
+  color: var(--text-main);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-field input::placeholder {
+  color: rgba(226, 232, 240, 0.6);
+}
+
+.form-field input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+}
+
+.login-actions button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.login-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.login-actions button:not(:disabled):hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+.error-text {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f87171;
+}
+
+.success-message {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.5);
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+  color: #a7f3d0;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.6s ease;
+}
+
+.success-message p {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -199,5 +307,8 @@ footer {
   }
   main {
     padding: 1.5rem;
+  }
+  .login-card {
+    padding: 2rem;
   }
 }
