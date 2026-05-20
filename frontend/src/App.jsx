@@ -2,23 +2,95 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import './index.css';
 
-// Components
-const Header = () => {
+const getInitialTheme = () => {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return 'light';
+  }
+
+  const storedTheme = window.localStorage.getItem('theme');
+  if (storedTheme === 'dark' || storedTheme === 'light') {
+    return storedTheme;
+  }
+
+  if (document.documentElement.classList.contains('dark')) {
+    return 'dark';
+  }
+
+  return 'light';
+};
+
+const useTheme = () => {
+  const [theme, setTheme] = React.useState(getInitialTheme);
+
+  React.useLayoutEffect(() => {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('theme', theme);
+    }
+  }, [theme]);
+
+  const toggleTheme = React.useCallback(() => {
+    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
+  }, []);
+
+  return { theme, toggleTheme };
+};
+
+const SunIcon = () => (
+  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+    <path
+      fill="currentColor"
+      d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm0-14.5a1 1 0 0 0 1-1V1.5a1 1 0 1 0-2 0V2.5a1 1 0 0 0 1 1Zm0 16a1 1 0 0 0-1 1v1a1 1 0 1 0 2 0v-1a1 1 0 0 0-1-1Zm10-7.5h-1a1 1 0 1 0 0 2h1a1 1 0 1 0 0-2Zm-18 0H3a1 1 0 1 0 0 2h1a1 1 0 1 0 0-2Zm13.657-6.657a1 1 0 0 0 1.414 0l.707-.707a1 1 0 0 0-1.414-1.414l-.707.707a1 1 0 0 0 0 1.414Zm-12.728 12.728a1 1 0 0 0 1.414 0l.707-.707a1 1 0 1 0-1.414-1.414l-.707.707a1 1 0 0 0 0 1.414Zm14.142 0 .707.707a1 1 0 0 0 1.414-1.414l-.707-.707a1 1 0 0 0-1.414 1.414Zm-12.728-12.728.707.707a1 1 0 0 0 1.414-1.414l-.707-.707A1 1 0 0 0 5.343 5.343Z"
+    />
+  </svg>
+);
+
+const MoonIcon = () => (
+  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+    <path
+      fill="currentColor"
+      d="M21.752 15.002a9.002 9.002 0 0 1-12.754-12.75 1 1 0 0 0-1.157-1.421A11 11 0 1 0 22.957 16.91a1 1 0 0 0-1.205-1.908Z"
+    />
+  </svg>
+);
+
+const Header = ({ theme, onToggleTheme }) => {
   const location = useLocation();
-  const isActive = (path) => location.pathname === path ? 'active' : '';
+  const isActive = (path) => (location.pathname === path ? 'active' : '');
 
   return (
     <header>
       <Link to="/">
         <h1>BlogWrites</h1>
       </Link>
-      <nav>
-        <ul>
-          <li><Link to="/" className={isActive('/')}>Home</Link></li>
-          <li><Link to="/about" className={isActive('/about')}>About</Link></li>
-          <li><Link to="/blogs" className={isActive('/blogs')}>Blogs</Link></li>
-        </ul>
-      </nav>
+      <div className="nav-actions">
+        <nav>
+          <ul>
+            <li><Link to="/" className={isActive('/')}>Home</Link></li>
+            <li><Link to="/about" className={isActive('/about')}>About</Link></li>
+            <li><Link to="/blogs" className={isActive('/blogs')}>Blogs</Link></li>
+          </ul>
+        </nav>
+        <button
+          type="button"
+          className="theme-toggle"
+          aria-label="Toggle dark mode"
+          aria-pressed={theme === 'dark'}
+          onClick={onToggleTheme}
+        >
+          {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+        </button>
+      </div>
     </header>
   );
 };
@@ -29,18 +101,16 @@ const Footer = () => (
   </footer>
 );
 
-// Data
 const animals = [
   { id: 'cat', name: 'Cat', image: '/images/cat.jpg', desc: 'Cats are small, carnivorous mammals.', fullDesc: 'Cats are fascinating animals with rich personalities and a long history of domestication.', characteristics: ['Small size', 'Agile and graceful', 'Keen senses, especially hearing and sight'], likes: ['Enjoys napping', 'Loves to hunt'], fact: 'Cats spend 70% of their lives sleeping.' },
-  { id: 'dog', name: 'Dog', image: '/images/dog.jpg', desc: 'Dogs are domesticated mammals loved for their loyalty.', fullDesc: 'Dogs are known as man\'s best friend, bred for various tasks and companionship.', characteristics: ['Loyal and protective', 'Highly trainable', 'Excellent sense of smell'], likes: ['Playing fetch', 'Going for walks'], fact: 'A dog\'s sense of smell is 10,000 to 100,000 times more sensitive than a human\'s.' },
-  { id: 'lion', name: 'Lion', image: '/images/lion.jpg', desc: 'Lions are large carnivorous mammals found in Africa and Asia.', fullDesc: 'Lions are the kings of the jungle, living in social groups called prides.', characteristics: ['Large size and strength', 'Majestic mane (males)', 'Social structure'], likes: ['Resting in the shade', 'Hunting cooperatively'], fact: 'A lion\'s roar can be heard up to 5 miles away.' },
+  { id: 'dog', name: 'Dog', image: '/images/dog.jpg', desc: 'Dogs are domesticated mammals loved for their loyalty.', fullDesc: "Dogs are known as man's best friend, bred for various tasks and companionship.", characteristics: ['Loyal and protective', 'Highly trainable', 'Excellent sense of smell'], likes: ['Playing fetch', 'Going for walks'], fact: "A dog's sense of smell is 10,000 to 100,000 times more sensitive than a human's." },
+  { id: 'lion', name: 'Lion', image: '/images/lion.jpg', desc: 'Lions are large carnivorous mammals found in Africa and Asia.', fullDesc: "Lions are the kings of the jungle, living in social groups called prides.", characteristics: ['Large size and strength', 'Majestic mane (males)', 'Social structure'], likes: ['Resting in the shade', 'Hunting cooperatively'], fact: "A lion's roar can be heard up to 5 miles away." },
   { id: 'tiger', name: 'Tiger', image: '/images/tiger.jpg', desc: 'Tigers are the largest wild cats in the world, known for their striped coats.', fullDesc: 'Tigers are powerful solitary hunters, easily recognizable by their dark vertical stripes on reddish-orange fur.', characteristics: ['Distinctive stripes', 'Exceptional swimmers', 'Solitary nature'], likes: ['Swimming to cool off', 'Stalking prey'], fact: 'No two tigers have the exact same stripe pattern.' },
   { id: 'goat', name: 'Goat', image: '/images/goat.jpg', desc: 'Goats are adaptable animals, known for their curiosity and intelligence.', fullDesc: 'Goats are one of the oldest domesticated species, known for their climbing abilities and curious nature.', characteristics: ['Horns (most breeds)', 'Agile climbers', 'Inquisitive behavior'], likes: ['Exploring new terrain', 'Foraging for food'], fact: 'Goats have rectangular pupils, giving them a 320 to 340-degree field of vision.' },
   { id: 'deer', name: 'Deer', image: '/images/deer.jpg', desc: 'Deer are graceful animals known for their agility and beauty.', fullDesc: 'Deer are hoofed ruminant mammals that are widely distributed across the globe.', characteristics: ['Antlers (males usually)', 'Slender bodies', 'Exceptional agility'], likes: ['Grazing in meadows', 'Running fast'], fact: 'Deer can jump up to 10 feet high and 30 feet in length.' },
   { id: 'sloth', name: 'Sloth', image: '/images/sloth.jpg', desc: 'Sloths are arboreal mammals noted for slowness of movement.', fullDesc: 'Sloths spend most of their lives hanging upside down in the trees of the tropical rainforests.', characteristics: ['Slow movement', 'Long claws', 'Algae-covered fur (for camouflage)'], likes: ['Sleeping', 'Hanging from branches'], fact: 'Sloths only come down from their trees about once a week.' }
 ];
 
-// Pages
 const Home = () => {
   return (
     <div className="page-content" style={{ padding: 0, background: 'transparent', boxShadow: 'none' }}>
@@ -63,7 +133,7 @@ const Home = () => {
 const Animal = () => {
   const location = useLocation();
   const id = location.pathname.split('/').pop();
-  const animal = animals.find(a => a.id === id);
+  const animal = animals.find((a) => a.id === id);
 
   if (!animal) {
     return (
@@ -108,20 +178,18 @@ const Blogs = () => {
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
-    // Attempt to fetch from backend, fallback to local data
     fetch('/api/blogs')
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         setBlogs(data);
         setLoading(false);
       })
       .catch(() => {
-        // Fallback mock data if backend is not running
         setBlogs([
-          {title: 'All About Cats', content: 'Cats are small, carnivorous mammals.'},
-          {title: 'All About Dogs', content: 'Dogs are domesticated mammals loved for their loyalty.'},
-          {title: 'All About Lions', content: 'Lions are large carnivorous mammals found in Africa and Asia.'},
-          {title: 'All About Tigers', content: 'Tigers are the largest wild cats in the world with distinct orange coats and black stripes.'},
+          { title: 'All About Cats', content: 'Cats are small, carnivorous mammals.' },
+          { title: 'All About Dogs', content: 'Dogs are domesticated mammals loved for their loyalty.' },
+          { title: 'All About Lions', content: 'Lions are large carnivorous mammals found in Africa and Asia.' },
+          { title: 'All About Tigers', content: 'Tigers are the largest wild cats in the world with distinct orange coats and black stripes.' },
         ]);
         setLoading(false);
       });
@@ -133,9 +201,9 @@ const Blogs = () => {
       {loading ? <p>Loading blogs...</p> : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {blogs.map((b, i) => (
-            <div key={i} style={{ padding: '1.5rem', background: 'rgba(255,255,255,0.05)', borderRadius: '8px' }}>
-              <h3 style={{ color: 'var(--primary-color)', marginTop: 0 }}>{b.title}</h3>
-              <p style={{ marginBottom: 0 }}>{b.content}</p>
+            <div key={i} className="blog-entry">
+              <h3>{b.title}</h3>
+              <p>{b.content}</p>
             </div>
           ))}
         </div>
@@ -144,12 +212,13 @@ const Blogs = () => {
   );
 };
 
-// Main App component
 function App() {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <Router>
       <div className="app-container">
-        <Header />
+        <Header theme={theme} onToggleTheme={toggleTheme} />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
