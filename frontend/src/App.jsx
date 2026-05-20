@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import './index.css';
+import LoginForm from './components/LoginForm';
 
 // Components
 const Header = () => {
@@ -17,6 +18,7 @@ const Header = () => {
           <li><Link to="/" className={isActive('/')}>Home</Link></li>
           <li><Link to="/about" className={isActive('/about')}>About</Link></li>
           <li><Link to="/blogs" className={isActive('/blogs')}>Blogs</Link></li>
+          <li><Link to="/login" className={isActive('/login')}>Login</Link></li>
         </ul>
       </nav>
     </header>
@@ -144,6 +146,12 @@ const Blogs = () => {
   );
 };
 
+const LoginPage = () => (
+  <div className="page-content">
+    <LoginForm />
+  </div>
+);
+
 // Main App component
 function App() {
   return (
@@ -155,6 +163,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/blogs" element={<Blogs />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/animal/:id" element={<Animal />} />
           </Routes>
         </main>
