@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import './index.css';
+import useDarkMode from './hooks/useDarkMode';
 
 // Components
-const Header = () => {
+const Header = ({ isDarkMode, onToggleDarkMode }) => {
   const location = useLocation();
   const isActive = (path) => location.pathname === path ? 'active' : '';
 
@@ -12,13 +13,25 @@ const Header = () => {
       <Link to="/">
         <h1>BlogWrites</h1>
       </Link>
-      <nav>
-        <ul>
-          <li><Link to="/" className={isActive('/')}>Home</Link></li>
-          <li><Link to="/about" className={isActive('/about')}>About</Link></li>
-          <li><Link to="/blogs" className={isActive('/blogs')}>Blogs</Link></li>
-        </ul>
-      </nav>
+      <div className="header-actions">
+        <nav>
+          <ul>
+            <li><Link to="/" className={isActive('/')}>Home</Link></li>
+            <li><Link to="/about" className={isActive('/about')}>About</Link></li>
+            <li><Link to="/blogs" className={isActive('/blogs')}>Blogs</Link></li>
+          </ul>
+        </nav>
+        <button
+          type="button"
+          className="theme-toggle"
+          aria-label="Toggle dark mode"
+          title="Toggle dark mode"
+          onClick={onToggleDarkMode}
+        >
+          <span aria-hidden="true">{isDarkMode ? '☀️' : '🌙'}</span>
+          <span className="sr-only">Toggle dark mode</span>
+        </button>
+      </div>
     </header>
   );
 };
@@ -146,10 +159,12 @@ const Blogs = () => {
 
 // Main App component
 function App() {
+  const [isDarkMode, toggleDarkMode] = useDarkMode();
+
   return (
     <Router>
       <div className="app-container">
-        <Header />
+        <Header isDarkMode={isDarkMode} onToggleDarkMode={toggleDarkMode} />
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
