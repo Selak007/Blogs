@@ -104,42 +104,37 @@ const About = () => (
 );
 
 const Blogs = () => {
-  const [blogs, setBlogs] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
+  const [searchQuery, setSearchQuery] = React.useState('');
 
-  React.useEffect(() => {
-    // Attempt to fetch from backend, fallback to local data
-    fetch('/api/blogs')
-      .then(res => res.json())
-      .then(data => {
-        setBlogs(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        // Fallback mock data if backend is not running
-        setBlogs([
-          {title: 'All About Cats', content: 'Cats are small, carnivorous mammals.'},
-          {title: 'All About Dogs', content: 'Dogs are domesticated mammals loved for their loyalty.'},
-          {title: 'All About Lions', content: 'Lions are large carnivorous mammals found in Africa and Asia.'},
-          {title: 'All About Tigers', content: 'Tigers are the largest wild cats in the world with distinct orange coats and black stripes.'},
-        ]);
-        setLoading(false);
-      });
-  }, []);
+  const filteredAnimals = animals.filter(animal =>
+    animal.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="page-content">
-      <h1>Latest Blogs</h1>
-      {loading ? <p>Loading blogs...</p> : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-          {blogs.map((b, i) => (
-            <div key={i} style={{ padding: '1.5rem', background: 'rgba(255,255,255,0.05)', borderRadius: '8px' }}>
-              <h3 style={{ color: 'var(--primary-color)', marginTop: 0 }}>{b.title}</h3>
-              <p style={{ marginBottom: 0 }}>{b.content}</p>
-            </div>
-          ))}
-        </div>
-      )}
+      <h1>Blogs</h1>
+      <input
+        type="text"
+        placeholder="Search for an animal..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        style={{ width: '100%', padding: '0.5rem', marginBottom: '1rem' }}
+      />
+      <div className="animal-grid">
+        {filteredAnimals.length > 0 ? (
+          filteredAnimals.map((animal) => (
+            <Link to={`/animal/${animal.id}`} key={animal.id} className="animal-card">
+              <img src={animal.image} alt={animal.name} onError={(e) => { e.target.src = 'https://via.placeholder.com/400x300?text=' + animal.name; }} />
+              <div className="animal-card-content">
+                <h3>{animal.name}</h3>
+                <p>{animal.desc}</p>
+              </div>
+            </Link>
+          ))
+        ) : (
+          <p>No animals found.</p>
+        )}
+      </div>
     </div>
   );
 };
