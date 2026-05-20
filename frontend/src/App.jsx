@@ -17,6 +17,7 @@ const Header = () => {
           <li><Link to="/" className={isActive('/')}>Home</Link></li>
           <li><Link to="/about" className={isActive('/about')}>About</Link></li>
           <li><Link to="/blogs" className={isActive('/blogs')}>Blogs</Link></li>
+          <li><Link to="/login" className={isActive('/login')}>Login</Link></li>
         </ul>
       </nav>
     </header>
@@ -144,6 +145,88 @@ const Blogs = () => {
   );
 };
 
+const Login = () => {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [errors, setErrors] = React.useState({});
+  const [isSuccess, setIsSuccess] = React.useState(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const trimmedEmail = email.trim();
+    setEmail(trimmedEmail);
+    const newErrors = {};
+
+    if (!trimmedEmail) {
+      newErrors.email = 'Email is required';
+    }
+
+    if (password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      setIsSuccess(true);
+      setEmail('');
+      setPassword('');
+    } else {
+      setIsSuccess(false);
+    }
+  };
+
+  if (isSuccess) {
+    return (
+      <div className="page-content login-card success-message" role="status" aria-live="polite">
+        <h1>Successfully logged in!</h1>
+        <p>You can now continue exploring our animal stories and latest blog entries.</p>
+        <Link to="/" className="login-success-link">Return to Home</Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="page-content login-card">
+      <h1>Sign in to BlogWrites</h1>
+      <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Access exclusive animal stories and curated blog posts.</p>
+      <form noValidate onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="email" className="form-label">Email</label>
+          <input
+            id="email"
+            type="email"
+            className="form-input"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            required
+          />
+          {errors.email && (
+            <p className="error-text" role="status" aria-live="polite">{errors.email}</p>
+          )}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="password" className="form-label">Password</label>
+          <input
+            id="password"
+            type="password"
+            className="form-input"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            required
+          />
+          {errors.password && (
+            <p className="error-text" role="status" aria-live="polite">{errors.password}</p>
+          )}
+        </div>
+
+        <button type="submit" className="form-button">Sign In</button>
+      </form>
+    </div>
+  );
+};
+
 // Main App component
 function App() {
   return (
@@ -155,6 +238,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/blogs" element={<Blogs />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/animal/:id" element={<Animal />} />
           </Routes>
         </main>
@@ -164,4 +248,5 @@ function App() {
   );
 }
 
+export { Login };
 export default App;
