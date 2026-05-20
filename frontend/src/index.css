@@ -1,23 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
 
 :root {
   --primary-color: #f59e0b;
   --secondary-color: #d97706;
-  --bg-color: #1a1a2e;
-  --card-bg: #16213e;
-  --text-main: #e2e8f0;
-  --text-muted: #94a3b8;
   --accent: #fbbf24;
+  --bg-color: #f5f5f7;
+  --card-bg: #ffffff;
+  --card-border: rgba(15, 23, 42, 0.08);
+  --text-main: #1f2937;
+  --text-muted: #475569;
+  --header-bg: rgba(255, 255, 255, 0.85);
+  --header-border: rgba(15, 23, 42, 0.08);
+  --nav-link-color: #475569;
+  --nav-link-active: #d97706;
+  --footer-bg: #f3f4f6;
+  --footer-text: #6b7280;
+  --toggle-bg: rgba(15, 23, 42, 0.05);
+  --toggle-border: rgba(15, 23, 42, 0.2);
+  --toggle-icon: #1f2937;
+}
+
+html.dark {
+  --bg-color: #1a1a1a;
+  --card-bg: #1f2435;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --text-main: #f0f0f0;
+  --text-muted: #cbd5f5;
+  --header-bg: rgba(26, 26, 46, 0.85);
+  --header-border: rgba(255, 255, 255, 0.1);
+  --nav-link-color: #cfd8ff;
+  --nav-link-active: #fbbf24;
+  --footer-bg: #141620;
+  --footer-text: #a5b4fc;
+  --toggle-bg: rgba(255, 255, 255, 0.08);
+  --toggle-border: rgba(255, 255, 255, 0.2);
+  --toggle-icon: #f0f0f0;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
   background-color: var(--bg-color);
   color: var(--text-main);
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 * {
@@ -29,6 +57,17 @@ a {
   text-decoration: none;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
 .app-container {
   display: flex;
   flex-direction: column;
@@ -36,16 +75,22 @@ a {
 }
 
 header {
-  background: rgba(26, 26, 46, 0.8);
+  background: var(--header-bg);
   backdrop-filter: blur(10px);
   padding: 1.5rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--header-border);
   position: sticky;
   top: 0;
   z-index: 100;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 header h1 {
@@ -68,14 +113,39 @@ nav ul {
 
 nav ul li a {
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--nav-link-color);
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
-  color: var(--accent);
+  color: var(--nav-link-active);
   text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+}
+
+.theme-toggle {
+  border: 1px solid var(--toggle-border);
+  background: var(--toggle-bg);
+  color: var(--toggle-icon);
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  border-color: var(--nav-link-active);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--nav-link-active);
+  outline-offset: 2px;
 }
 
 main {
@@ -103,18 +173,26 @@ h2 {
   background: var(--card-bg);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s ease;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--card-border);
   display: flex;
   flex-direction: column;
 }
 
+html.dark .animal-card {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
 .animal-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
   border-color: rgba(251, 191, 36, 0.3);
+}
+
+html.dark .animal-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
 .animal-card img {
@@ -152,9 +230,13 @@ h2 {
   background: var(--card-bg);
   padding: 3rem;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+  border: 1px solid var(--card-border);
   animation: fadeIn 0.6s ease;
+}
+
+html.dark .page-content {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .page-content h1 {
@@ -173,17 +255,23 @@ h2 {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 footer {
-  background: rgba(22, 33, 62, 0.9);
-  color: var(--text-muted);
+  background: var(--footer-bg);
+  color: var(--footer-text);
   text-align: center;
   padding: 1.5rem;
   font-size: 0.9rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--card-border);
 }
 
 @media (max-width: 768px) {
@@ -192,11 +280,18 @@ footer {
     padding: 1rem;
     gap: 1rem;
   }
+
+  .header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
   nav ul {
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
   }
+
   main {
     padding: 1.5rem;
   }
