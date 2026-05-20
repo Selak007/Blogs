@@ -42,20 +42,50 @@ const animals = [
 
 // Pages
 const Home = () => {
+  const [searchTerm, setSearchTerm] = React.useState('');
+
+  const filteredAnimals = animals.filter(animal =>
+    animal.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="page-content" style={{ padding: 0, background: 'transparent', boxShadow: 'none' }}>
-      <h2>Featured Animals</h2>
-      <div className="animal-grid">
-        {animals.map((animal) => (
-          <Link to={`/animal/${animal.id}`} key={animal.id} className="animal-card">
-            <img src={animal.image} alt={animal.name} onError={(e) => { e.target.src = 'https://via.placeholder.com/400x300?text=' + animal.name; }} />
-            <div className="animal-card-content">
-              <h3>{animal.name}</h3>
-              <p>{animal.desc}</p>
-            </div>
-          </Link>
-        ))}
+      <div style={{ marginBottom: '1.5rem' }}>
+        <input
+          type="text"
+          placeholder="Search for an animal..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{
+            width: '100%',
+            padding: '0.75rem 1rem',
+            fontSize: '1rem',
+            borderRadius: '8px',
+            border: '1px solid #444',
+            backgroundColor: '#2a2a2a',
+            color: '#fff',
+            boxSizing: 'border-box'
+          }}
+        />
       </div>
+      
+      <h2>Featured Animals</h2>
+
+      {filteredAnimals.length > 0 ? (
+        <div className="animal-grid">
+          {filteredAnimals.map((animal) => (
+            <Link to={`/animal/${animal.id}`} key={animal.id} className="animal-card">
+              <img src={animal.image} alt={animal.name} onError={(e) => { e.target.src = 'https://via.placeholder.com/400x300?text=' + animal.name; }} />
+              <div className="animal-card-content">
+                <h3>{animal.name}</h3>
+                <p>{animal.desc}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <p>No animals found.</p>
+      )}
     </div>
   );
 };
