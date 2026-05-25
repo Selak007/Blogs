@@ -1,0 +1,19 @@
+"use strict";
+
+module.exports = {
+  use: {
+    // Browser options
+    headless: true,
+    viewport: {
+      width: 1280,
+      height: 720
+    },
+    ignoreHTTPSErrors: true,
+    video: 'retain-on-failure'
+  },
+  // Test directory
+  testDir: 'tests',
+  // Timeout for each test in milliseconds
+  timeout: 30000
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJtb2R1bGUiLCJleHBvcnRzIiwidXNlIiwiaGVhZGxlc3MiLCJ2aWV3cG9ydCIsIndpZHRoIiwiaGVpZ2h0IiwiaWdub3JlSFRUUFNFcnJvcnMiLCJ2aWRlbyIsInRlc3REaXIiLCJ0aW1lb3V0Il0sInNvdXJjZXMiOlsicGxheXdyaWdodC5jb25maWcuanMiXSwic291cmNlc0NvbnRlbnQiOlsibW9kdWxlLmV4cG9ydHMgPSB7XG4gICAgdXNlOiB7XG4gICAgICAgIC8vIEJyb3dzZXIgb3B0aW9uc1xuICAgICAgICBoZWFkbGVzczogdHJ1ZSxcbiAgICAgICAgdmlld3BvcnQ6IHsgd2lkdGg6IDEyODAsIGhlaWdodDogNzIwIH0sXG4gICAgICAgIGlnbm9yZUhUVFBTRXJyb3JzOiB0cnVlLFxuICAgICAgICB2aWRlbzogJ3JldGFpbi1vbi1mYWlsdXJlJ1xuICAgIH0sXG4gICAgLy8gVGVzdCBkaXJlY3RvcnlcbiAgICB0ZXN0RGlyOiAndGVzdHMnLFxuICAgIC8vIFRpbWVvdXQgZm9yIGVhY2ggdGVzdCBpbiBtaWxsaXNlY29uZHNcbiAgICB0aW1lb3V0OiAzMDAwMCxcbn07Il0sIm1hcHBpbmdzIjoiOztBQUFBQSxNQUFNLENBQUNDLE9BQU8sR0FBRztFQUNiQyxHQUFHLEVBQUU7SUFDRDtJQUNBQyxRQUFRLEVBQUUsSUFBSTtJQUNkQyxRQUFRLEVBQUU7TUFBRUMsS0FBSyxFQUFFLElBQUk7TUFBRUMsTUFBTSxFQUFFO0lBQUksQ0FBQztJQUN0Q0MsaUJBQWlCLEVBQUUsSUFBSTtJQUN2QkMsS0FBSyxFQUFFO0VBQ1gsQ0FBQztFQUNEO0VBQ0FDLE9BQU8sRUFBRSxPQUFPO0VBQ2hCO0VBQ0FDLE9BQU8sRUFBRTtBQUNiLENBQUMiLCJpZ25vcmVMaXN0IjpbXX0=

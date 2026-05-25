@@ -1,0 +1,17 @@
+"use strict";
+
+const {
+  test,
+  expect
+} = require('@playwright/test');
+test('navigation links are correct', async ({
+  page
+}) => {
+  await page.goto('https://example.com');
+  // Mock-up navigation test
+  await page.click('text=About Us');
+  await expect(page).toHaveURL(/about/);
+  await page.click('text=Contact');
+  await expect(page).toHaveURL(/contact/);
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJ0ZXN0IiwiZXhwZWN0IiwicmVxdWlyZSIsInBhZ2UiLCJnb3RvIiwiY2xpY2siLCJ0b0hhdmVVUkwiXSwic291cmNlcyI6WyJuYXZpZ2F0aW9uLnNwZWMuanMiXSwic291cmNlc0NvbnRlbnQiOlsiY29uc3QgeyB0ZXN0LCBleHBlY3QgfSA9IHJlcXVpcmUoJ0BwbGF5d3JpZ2h0L3Rlc3QnKTtcblxudGVzdCgnbmF2aWdhdGlvbiBsaW5rcyBhcmUgY29ycmVjdCcsIGFzeW5jICh7IHBhZ2UgfSkgPT4ge1xuICBhd2FpdCBwYWdlLmdvdG8oJ2h0dHBzOi8vZXhhbXBsZS5jb20nKTtcbiAgLy8gTW9jay11cCBuYXZpZ2F0aW9uIHRlc3RcbiAgYXdhaXQgcGFnZS5jbGljaygndGV4dD1BYm91dCBVcycpO1xuICBhd2FpdCBleHBlY3QocGFnZSkudG9IYXZlVVJMKC9hYm91dC8pO1xuICBhd2FpdCBwYWdlLmNsaWNrKCd0ZXh0PUNvbnRhY3QnKTtcbiAgYXdhaXQgZXhwZWN0KHBhZ2UpLnRvSGF2ZVVSTCgvY29udGFjdC8pO1xufSk7Il0sIm1hcHBpbmdzIjoiOztBQUFBLE1BQU07RUFBRUEsSUFBSTtFQUFFQztBQUFPLENBQUMsR0FBR0MsT0FBTyxDQUFDLGtCQUFrQixDQUFDO0FBRXBERixJQUFJLENBQUMsOEJBQThCLEVBQUUsT0FBTztFQUFFRztBQUFLLENBQUMsS0FBSztFQUN2RCxNQUFNQSxJQUFJLENBQUNDLElBQUksQ0FBQyxxQkFBcUIsQ0FBQztFQUN0QztFQUNBLE1BQU1ELElBQUksQ0FBQ0UsS0FBSyxDQUFDLGVBQWUsQ0FBQztFQUNqQyxNQUFNSixNQUFNLENBQUNFLElBQUksQ0FBQyxDQUFDRyxTQUFTLENBQUMsT0FBTyxDQUFDO0VBQ3JDLE1BQU1ILElBQUksQ0FBQ0UsS0FBSyxDQUFDLGNBQWMsQ0FBQztFQUNoQyxNQUFNSixNQUFNLENBQUNFLElBQUksQ0FBQyxDQUFDRyxTQUFTLENBQUMsU0FBUyxDQUFDO0FBQ3pDLENBQUMsQ0FBQyIsImlnbm9yZUxpc3QiOltdfQ==
